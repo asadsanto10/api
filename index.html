@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API</title>
+</head>
+<body>
+    <h1>JSON</h1>
+    <h1>JavaScript Onject Notation</h1>
+
+    <ul id="userDataShow">
+
+    </ul>
+    <script>
+        // const user = {id: 55, name:'santo', firendsName: ['asad', 'pallob', 'atick'], ages: [12, 45, 45, 78, 96, 45]};
+        // const userJSON = JSON.stringify(user);
+        // console.log(userJSON);
+        // const userJSONObject = JSON.parse(userJSON);
+        // console.log(userJSONObject);
+
+        // json load data
+        fetch('https://jsonplaceholder.typicode.com/users')
+        .then(response => response.json())
+        .then(json => displayUser(json))
+
+        function displayUser(users){
+            console.log('users', users);
+            const username = users.map(user => user.username);
+            console.log(username);
+
+            const ul = document.getElementById('userDataShow');
+            for (let i = 0; i < username.length; i++) {
+                const user = username[i];
+                const li = document.createElement("li");
+                li.innerText = user;
+                ul.appendChild(li); 
+            }
+        }
+    </script>
+</body>
+</html>
